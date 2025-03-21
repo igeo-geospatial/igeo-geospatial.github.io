@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iGeo - Geospatial Data Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #e0f7fa;
+            --accent-color: #004D40;
+            --text-color: #2d3436;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(45deg, #f8f9fa, #ffffff);
+        }
+
+        header {
+            background: var(--secondary-color);
+            padding: 2rem 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 250px;
+            height: auto;
+            /* margin: 1rem 0; */
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            color: var(--primary-color);
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 1.5rem 0;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: var(--secondary-color);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .install-steps {
+            display: grid;
+            gap: 1.5rem;
+            counter-reset: step;
+            margin: 2rem 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            /* padding: 1.5rem; */
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            background: var(--primary-color);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png" alt="iGeo Logo" class="logo">
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2>🌐 Transforming Geospatial Data Collection</h2>
+            <p class="lead">iGeo is a Flutter-based mobile application for efficient collection and management of
+                geospatial and environmental data.</p>
+        </section>
+
+        <section class="section">
+            <h2>✨ Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fas fa-project-diagram"></i>
+                    <h3>Project Management</h3>
+                    <p>Create and organize research projects through intuitive interface</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Georeferencing</h3>
+                    <p>Capture geographical points with precision using device GPS</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-database"></i>
+                    <h3>Offline Storage</h3>
+                    <p>Full functionality even without internet connection</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>📥 Download & Installation</h2>
+            <a href="path/to/your/app.apk" class="download-btn">
+                <i class="fas fa-download"></i>
+                Download APK
+            </a>
+
+            <div class="install-steps">
+                <div class="step">
+                    <h4>Enable Unknown Sources</h4>
+                    <p>Go to Settings > Security and enable installation from unknown sources</p>
+                </div>
+
+                <div class="step">
+                    <h4>Download & Install</h4>
+                    <p>Open the downloaded APK file and follow installation instructions</p>
+                </div>
+
+                <div class="step">
+                    <h4>Start Using</h4>
+                    <p>Launch the app and begin your data collection projects</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>🛠 Technologies Used</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <i class="fab fa-flutter"></i>
+                    <h3>Flutter</h3>
+                    <p>High-performance cross-platform development</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>SQLite</h3>
+                    <p>Reliable local storage</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Developed by the Physical Geography Laboratory - UFF</p>
+        <p style="margin-top: 1rem;">
+            <a href="https://github.com/igeo-geospatial/igeo" style="color: white; text-decoration: none;">
+                <i class="fab fa-github"></i> Open Source on GitHub
+            </a>
+        </p>
+    </footer>
+</body>
+
+</html>
