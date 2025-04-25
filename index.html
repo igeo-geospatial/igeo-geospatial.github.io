@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iGeo - Geospatial Data Collection</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
     <style>
         :root {
             --primary-color: #4CAF50;
@@ -37,7 +48,6 @@
         .logo {
             max-width: 250px;
             height: auto;
-            /* margin: 1rem 0; */
             transition: transform 0.3s ease;
         }
 
@@ -131,7 +141,7 @@
             display: flex;
             align-items: center;
             gap: 1rem;
-            /* padding: 1.5rem; */
+            padding: 1.5rem;
             background: #f8f9fa;
             border-radius: 10px;
         }
@@ -150,6 +160,74 @@
             font-weight: bold;
         }
 
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            margin: 2rem auto;
+            position: relative;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .modal-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            flex-grow: 1;
+        }
+
+        .modal-btn.accept {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .data-warning {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            border: 1px solid #ffcdd2;
+        }
+
+        .data-warning {
+            color: #d32f2f;
+            background: #ffebee;
+            padding: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #ffcdd2;
+            margin: 1.5rem 0;
+        }
+
+        .data-warning h3 {
+            margin-bottom: 0.8rem;
+            color: #b71c1c;
+        }
+
+        .data-warning strong {
+            color: #c62828;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 1rem;
@@ -162,20 +240,105 @@
             h1 {
                 font-size: 2rem;
             }
+
+            .modal-content {
+                margin: 1rem;
+            }
         }
     </style>
 </head>
 
 <body>
+    <div class="modal-overlay" id="termsModal">
+        <div class="modal-content">
+            <h3>TERMS OF USE / TERMOS DE USO</h3>
+            <div style="margin: 1.5rem 0;">
+                <p><strong>Português:</strong></p>
+                <p>Prezado(a) Usuário(a),</p>
+                <p>O aplicativo iGeo é um projeto desenvolvido pelo Laboratório de Geografia Física da Universidade
+                    Federal Fluminense (UFF). Objetiva coletar registros por meio de textos, coordenadas geográficas e
+                    fotografias para o armazenamento de dados coletados em campo.</p>
+                <p><strong>ATENÇÃO!</strong> Todos os dados coletados são armazenados apenas localmente no dispositivo
+                    móvel do usuário. O aplicativo iGeo não se responsabiliza pelo uso e compartilhamento desses dados.
+                </p>
+                <p>Confirmo que:<br>
+                    1. Sei que os dados são armazenados apenas localmente no dispositivo móvel.<br>
+                    2. Sou maior de idade (a partir de 18 anos).<br>
+                    3. Compreendo que a inserção de dados no aplicativo e seu uso são de minha <strong>INTEIRA</strong>
+                    responsabilidade.<br>
+                    4. Sei que, ao desinstalar o aplicativo, os dados salvos localmente serão perdidos.</p>
+
+                <p><strong>English:</strong></p>
+                <p>Dear User,</p>
+                <p>The iGeo app is a project developed by the Laboratory of Physical Geography of the Federal Fluminense
+                    University (UFF). It aims to collect records through texts, geographic coordinates, and photographs
+                    for the storage of data collected in the field.</p>
+                <p><strong>ATTENTION!</strong> All collected data is stored only locally on the user's mobile device.
+                    iGeo app is not responsible for the use and sharing of this data on the device.</p>
+                <p>I confirm that:<br>
+                    1. I understand that data is stored only locally on the mobile device.<br>
+                    2. I am of legal age (18 years or older).<br>
+                    3. I understand that entering data into the app and its use are my <strong>ENTIRE</strong>
+                    responsibility.<br>
+                    4. I understand that if I uninstall the app, the locally saved data will be lost.</p>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn accept" onclick="startDownload()">Accept / Aceitar</button>
+            </div>
+        </div>
+    </div>
+
     <header>
         <img src="logo.png" alt="iGeo Logo" class="logo">
     </header>
 
     <div class="container">
+
+
         <section class="section">
             <h2>🌐 Transforming Geospatial Data Collection</h2>
             <p class="lead">iGeo is a Flutter-based mobile application for efficient collection and management of
                 geospatial and environmental data.</p>
+            <style>
+                .screenshots-grid {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1.5rem;
+                    flex-wrap: wrap;
+                    margin: 2rem 0;
+                }
+
+                .screenshot {
+                    width: 200px;
+                    height: auto;
+                    border-radius: 15px;
+                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                    transition: transform 0.3s ease;
+                    border: 2px solid var(--secondary-color);
+                }
+
+                .screenshot:hover {
+                    transform: scale(1.05);
+                    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                }
+
+                @media (max-width: 768px) {
+                    .screenshots-grid {
+                        gap: 1rem;
+                    }
+
+                    .screenshot {
+                        width: 150px;
+                    }
+                }
+            </style>
+
+            <div class="screenshots-grid">
+                <img src="print1.png" class="screenshot" alt="Interface de coleta de dados">
+                <img src="print2.png" class="screenshot" alt="Visualização do mapa">
+                <img src="print3.png" class="screenshot" alt="Opções de exportação">
+            </div>
+
         </section>
 
         <section class="section">
@@ -198,12 +361,40 @@
                     <h3>Offline Storage</h3>
                     <p>Full functionality even without internet connection</p>
                 </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-camera-retro"></i>
+                    <h3>Geotagged Photos</h3>
+                    <p>Capture field photos with embedded GPS coordinates and automatic timestamp recording</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-file-csv"></i>
+                    <h3>CSV Export</h3>
+                    <p>Export collected data in standard CSV format for GIS integration and analysis</p>
+                </div>
+
+                <div class="feature-card">
+                    <i class="fas fa-mountain"></i>
+                    <h3>Built for Earth Scientists</h3>
+                    <p>Designed specifically for environmental researchers and geoscientists conducting surveys</p>
+                </div>
+
             </div>
         </section>
 
         <section class="section">
             <h2>📥 Download & Installation</h2>
-            <a href="path/to/your/app.apk" class="download-btn">
+            <div class="data-warning" style="margin: 1.5rem 0;">
+                <h3>⚠️ Application Availability Notice</h3>
+                <p>This application is not available through official app stores. The installation package (APK) must be
+                    manually downloaded and installed.</p>
+                <p><strong>Important:</strong> Your device may show security warnings during installation since the app
+                    isn't store-verified. These warnings are standard for non-store apps and can be safely bypassed.</p>
+                <p style="margin-top: 1rem;"><strong>Always download the APK file only from trusted sources.</strong>
+                </p>
+            </div>
+            <a href="#" onclick="showTerms()" class="download-btn">
                 <i class="fas fa-download"></i>
                 Download APK
             </a>
@@ -211,18 +402,26 @@
             <div class="install-steps">
                 <div class="step">
                     <h4>Enable Unknown Sources</h4>
-                    <p>Go to Settings > Security and enable installation from unknown sources</p>
+                    <p>Go to Settings → Security → Install unknown apps → Select your browser/file manager → Enable
+                        permission</p>
                 </div>
-
                 <div class="step">
-                    <h4>Download & Install</h4>
-                    <p>Open the downloaded APK file and follow installation instructions</p>
+                    <h4>Installation Trust</h4>
+                    <p>After installation, you may see "Google Protect" warning. Tap "More info" → "Install anyway"</p>
                 </div>
-
                 <div class="step">
-                    <h4>Start Using</h4>
-                    <p>Launch the app and begin your data collection projects</p>
+                    <h4>Launch Safely</h4>
+                    <p>When first opening, device may warn about unofficial app. Check "Don't warn again" → Continue</p>
                 </div>
+            </div>
+            <div class="data-warning">
+                <h3>⚠️ Data Storage Notice</h3>
+                <p>All collected data is stored exclusively on your device using local storage (SQLite). The application
+                    does not transmit or backup data to external servers. Users are entirely responsible for data
+                    management
+                    and preservation. Uninstalling the application will permanently erase all collected data.</p>
+                <p style="margin-top: 1rem;"><strong>We recommend regular data backups through export features.</strong>
+                </p>
             </div>
         </section>
 
@@ -242,6 +441,18 @@
                 </div>
             </div>
         </section>
+
+        <section class="section">
+            <h2>🔓 Open Source</h2>
+            <div class="feature-card dark-link">
+                <a href="https://github.com/igeo-geospatial/igeo" style="a:hover{color: black;};"><i
+                        class="fab fa-github"></i></a>
+
+                <p>Full source code available on GitHub. Users can audit, modify, and redistribute the code freely.</p>
+                <p style="margin-top: 1rem;"> <a class="dark-link"
+                        href="https://github.com/igeo-geospatial/igeo">https://github.com/igeo-geospatial/igeo</a></p>
+            </div>
+        </section>
     </div>
 
     <footer>
@@ -252,6 +463,24 @@
             </a>
         </p>
     </footer>
+
+    <script>
+        function showTerms() {
+            event.preventDefault();
+            document.getElementById('termsModal').style.display = 'block';
+        }
+
+        function startDownload() {
+            window.location.href = 'path/to/your/app.apk';
+            document.getElementById('termsModal').style.display = 'none';
+        }
+
+        window.onclick = function (event) {
+            if (event.target == document.getElementById('termsModal')) {
+                document.getElementById('termsModal').style.display = 'none';
+            }
+        }
+    </script>
 </body>
 
 </html>
